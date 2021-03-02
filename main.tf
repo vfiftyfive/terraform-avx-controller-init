@@ -28,8 +28,8 @@ data "aws_vpc" "selected" {
   id = var.vpc_id
 }
 
-resource "null_resource" "controller-init" {
-
+resource "null_resource" "controller_init" {
+  triggers = aws_cloudformation_stack.aviatrix_controller.id
   provisioner "local-exec" {
     command = "sleep 180 && scripts/goavxinit"
     environment = {
