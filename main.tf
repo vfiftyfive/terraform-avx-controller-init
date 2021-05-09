@@ -29,7 +29,7 @@ data "aws_vpc" "selected" {
 }
 
 resource "null_resource" "controller_init" {
-  triggers = aws_cloudformation_stack.aviatrix_controller.id
+  triggers = { controller_id = aws_cloudformation_stack.aviatrix_controller.id }
   provisioner "local-exec" {
     command = "sleep 180 && scripts/goavxinit"
     environment = {
@@ -37,6 +37,8 @@ resource "null_resource" "controller_init" {
       PRIVATE_IP   = local.private_ip.address
       ADMIN_EMAIL  = var.admin_email
       NEW_PASSWORD = var.new_password
+      AVX_LICENSE  = var.customer_id
+      GIT_URL      = var.git_url
     }
   }
 }
