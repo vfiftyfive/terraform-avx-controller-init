@@ -39,6 +39,7 @@ resource "null_resource" "controller_init" {
       NEW_PASSWORD = var.new_password
       AVX_LICENSE  = var.customer_id
       GIT_URL      = var.git_url
+      TF_VARFILE   = var.tf_var_file
     }
   }
 }

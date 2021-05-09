@@ -9,4 +9,5 @@ variable "region" { default = "us-west-2" }
 variable "customer_id" {}
 variable "git_url" {}
 variable "credentials_file" {}
+variable "tf_var_file" {}
 
