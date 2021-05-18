@@ -1,16 +1,3 @@
-locals {
-  #Get controller private ip address from CFT outputs
-  private_ip = {
-    for k, v in aws_cloudformation_stack.aviatrix_controller.outputs :
-    "address" => v if k == "AviatrixControllerPrivateIP"
-  }
-  # Get controller public ip address from CFT outputs
-  public_ip = {
-    for k, v in aws_cloudformation_stack.aviatrix_controller.outputs :
-    "address" => v if k == "AviatrixControllerEIP"
-  }
-}
-
 #Deploy AVTX Controller with CFT
 resource "aws_cloudformation_stack" "aviatrix_controller" {
   name = "aviatrix-controller-TF"
